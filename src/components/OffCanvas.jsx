@@ -41,7 +41,7 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 					<Link to="#">
 						<img src={heartIcon} alt="" />
 					</Link>
-					<Link to="#">
+					<Link to="/cart">
 						<img src={cartIcon} alt="" /> <span>0</span>
 					</Link>
 					<div className="price">$0.00</div>

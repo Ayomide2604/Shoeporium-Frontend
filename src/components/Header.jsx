@@ -68,19 +68,19 @@ const Header = () => {
 									<a href="#">Pages</a>
 									<ul className="dropdown">
 										<li>
-											<a href="./about.html">About Us</a>
+											<Link to="./about.html">About Us</Link>
 										</li>
 										<li>
-											<a href="./shop-details.html">Shop Details</a>
+											<Link to="./shop-details.html">Shop Details</Link>
 										</li>
 										<li>
-											<a href="./shopping-cart.html">Shopping Cart</a>
+											<Link to="./shopping-cart.html">Shopping Cart</Link>
 										</li>
 										<li>
-											<a href="./checkout.html">Check Out</a>
+											<Link to="./checkout.html">Check Out</Link>
 										</li>
 										<li>
-											<a href="./blog-details.html">Blog Details</a>
+											<Link to="./blog-details.html">Blog Details</Link>
 										</li>
 									</ul>
 								</li>
@@ -101,9 +101,9 @@ const Header = () => {
 							<a href="#">
 								<img src={heartIcon} alt="" />
 							</a>
-							<a href="#">
+							<Link to="/cart">
 								<img src={cartIcon} alt="" /> <span>0</span>
-							</a>
+							</Link>
 							<div className="price">$0.00</div>
 						</div>
 					</div>

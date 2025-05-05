@@ -5,7 +5,7 @@ import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import BreadCrumb from "../components/BreadCrumb";
 import productJson from "../data/productJson";
 import Rating from "../components/Rating";
-import RelatedProducts from "./RelatedProducts";
+import RelatedProducts from "./../pages/RelatedProducts";
 
 const ProductDetailScreen = () => {
 	const { id } = useParams();
