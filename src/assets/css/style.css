@@ -1242,7 +1242,7 @@ ol {
 .shop__sidebar__categories ul,
 .shop__sidebar__price ul,
 .shop__sidebar__brand ul {
-	height: 225px;
+	max-height: 225px;
 }
 
 .shop__sidebar__categories ul li,
@@ -1399,7 +1399,6 @@ ol {
 .shop__sidebar__accordion
 	.card-heading
 	> a.active[aria-expanded="false"]:after {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 24px;
 	font-weight: 700;
@@ -2082,7 +2081,6 @@ ol {
 	position: absolute;
 	right: -14px;
 	top: 0;
-	content: "";
 	font-family: "FontAwesome";
 }
 

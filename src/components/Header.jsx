@@ -58,10 +58,10 @@ const Header = () => {
 						<nav className="header__menu mobile-menu ">
 							<ul>
 								<li className="active">
-									<a href="./index.html">Home</a>
+									<a href="/">Home</a>
 								</li>
 								<li>
-									<a href="./shop.html">Shop</a>
+									<a href="/products">Shop</a>
 								</li>
 								<li>
 									<a href="#">Pages</a>
