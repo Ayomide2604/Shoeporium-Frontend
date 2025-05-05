@@ -548,27 +548,27 @@ ol {
   Hero
 -----------------------*/
 
-.hero__slider.owl-carousel .owl-item.active .hero__text h6 {
+.hero__slider .hero__text h6 {
 	top: 0;
 	opacity: 1;
 }
 
-.hero__slider.owl-carousel .owl-item.active .hero__text h2 {
+.hero__slider .hero__text h2 {
 	top: 0;
 	opacity: 1;
 }
 
-.hero__slider.owl-carousel .owl-item.active .hero__text p {
+.hero__slider .hero__text p {
 	top: 0;
 	opacity: 1;
 }
 
-.hero__slider.owl-carousel .owl-item.active .hero__text .primary-btn {
+.hero__slider .hero__text .primary-btn {
 	top: 0;
 	opacity: 1;
 }
 
-.hero__slider.owl-carousel .owl-nav button {
+.hero__slider button {
 	font-size: 36px;
 	color: #333333;
 	position: absolute;
@@ -578,7 +578,7 @@ ol {
 	line-height: 29px;
 }
 
-.hero__slider.owl-carousel .owl-nav button.owl-next {
+.hero__slider button.owl-next {
 	left: auto;
 	right: 75px;
 }

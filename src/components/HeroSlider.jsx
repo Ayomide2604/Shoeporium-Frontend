@@ -48,31 +48,31 @@ const HeroSlider = ({ slides }) => {
 										}}
 									></div>
 									<div className="col-xl-5 col-lg-7 col-md-8">
-										{/* <div className="hero__text"> */}
-										<h6>{slide.title}</h6>
-										<h2>{slide.subTitle}</h2>
+										<div className="hero__text">
+											<h6>{slide.title}</h6>
+											<h2>{slide.subTitle}</h2>
 
-										<p>{slide.description}</p>
-										<a href="#" className="primary-btn">
-											Shop now <span className="arrow_right"></span>
-										</a>
+											<p>{slide.description}</p>
+											<a href="#" className="primary-btn">
+												Shop now <span className="arrow_right"></span>
+											</a>
 
-										<div className="hero__social">
-											<a href="#">
-												<FaFacebook />
-											</a>
-											<a href="#">
-												<FaTwitter />
-											</a>
-											<a href="#">
-												<FaInstagram />
-											</a>
-											<a href="#">
-												<FaTiktok />
-											</a>
+											<div className="hero__social">
+												<a href="#">
+													<FaFacebook />
+												</a>
+												<a href="#">
+													<FaTwitter />
+												</a>
+												<a href="#">
+													<FaInstagram />
+												</a>
+												<a href="#">
+													<FaTiktok />
+												</a>
+											</div>
 										</div>
 									</div>
-									{/* </div> */}
 								</div>
 							</div>
 						</div>
