@@ -4,6 +4,7 @@ import productJson from "./../data/productJson";
 import Product from "../components/Product";
 import Pagination from "../components/Pagination";
 import ProductFilter from "./../components/ProductFilter";
+import ProductSearch from "../components/ProductSearch";
 
 const categories = [
 	{
@@ -24,14 +25,7 @@ const ProductScreen = () => {
 					<div className="row">
 						<div className="col-lg-3">
 							<div className="shop__sidebar">
-								<div className="shop__sidebar__search">
-									<form action="#">
-										<input type="text" placeholder="Search..." />
-										<button type="submit">
-											<span className="icon_search" />
-										</button>
-									</form>
-								</div>
+								<ProductSearch />
 								<div className="shop__sidebar__accordion">
 									<div className="accordion" id="accordionExample">
 										<ProductFilter
@@ -53,7 +47,7 @@ const ProductScreen = () => {
 									</div>
 									<div className="col-lg-6 col-md-6 col-sm-6">
 										<div className=" shop__product__option__right">
-											<p c>Sort by Price:</p>
+											<p >Sort by Price:</p>
 											<select className="btn btn-sm">
 												<option value="">Low To High</option>
 												<option value="">$0 - $55</option>
