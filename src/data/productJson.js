@@ -14,6 +14,7 @@ const productJson = [
 		price: 67.24,
 		image: product1,
 		category: "clothes",
+		rating: 4.5,
 	},
 	{
 		id: 2,
@@ -21,6 +22,7 @@ const productJson = [
 		price: 67.24,
 		image: product2,
 		category: "clothes",
+		rating: 3,
 	},
 	{
 		id: 3,
@@ -28,6 +30,7 @@ const productJson = [
 		price: 43.48,
 		image: product3,
 		category: "accessories",
+		rating: 3.5,
 	},
 	{
 		id: 4,
@@ -35,6 +38,7 @@ const productJson = [
 		price: 60.9,
 		image: product4,
 		category: "shoes",
+		rating: 4,
 	},
 	{
 		id: 5,
@@ -42,6 +46,7 @@ const productJson = [
 		price: 31.37,
 		image: product5,
 		category: "accessories",
+		rating: 5,
 	},
 	{
 		id: 6,
@@ -49,6 +54,7 @@ const productJson = [
 		price: 98.49,
 		image: product6,
 		category: "shoes",
+		rating: 3,
 	},
 	{
 		id: 7,
@@ -56,6 +62,7 @@ const productJson = [
 		price: 98.49,
 		image: product7,
 		category: "clothes",
+		rating: 4,
 	},
 	{
 		id: 8,
@@ -63,6 +70,7 @@ const productJson = [
 		price: 98.49,
 		image: product8,
 		category: "accessories",
+		rating: 4.5,
 	},
 ];
 export default productJson;

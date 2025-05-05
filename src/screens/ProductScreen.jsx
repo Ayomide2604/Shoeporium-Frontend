@@ -47,7 +47,7 @@ const ProductScreen = () => {
 									</div>
 									<div className="col-lg-6 col-md-6 col-sm-6">
 										<div className=" shop__product__option__right">
-											<p >Sort by Price:</p>
+											<p>Sort by Price:</p>
 											<select className="btn btn-sm">
 												<option value="">Low To High</option>
 												<option value="">$0 - $55</option>
@@ -64,6 +64,7 @@ const ProductScreen = () => {
 											title={product.title}
 											price={product.price}
 											image={product.image}
+											rating={product.rating}
 										/>
 									</div>
 								))}

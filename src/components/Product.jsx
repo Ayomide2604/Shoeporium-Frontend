@@ -1,9 +1,8 @@
-import { FaStar } from "react-icons/fa";
-
 import heartIcon from "../assets/img/icon/heart.png";
 import compareIcon from "../assets/img/icon/compare.png";
 import searchIcon from "../assets/img/icon/search.png";
-const Product = ({ image, title, price }) => {
+import Rating from "./Rating";
+const Product = ({ image, title, price, rating }) => {
 	return (
 		<div className="product__item">
 			<div
@@ -37,11 +36,7 @@ const Product = ({ image, title, price }) => {
 					+ Add To Cart
 				</a>
 				<div className="rating">
-					<FaStar />
-					<FaStar />
-					<FaStar />
-					<FaStar />
-					<FaStar />
+					<Rating rating={rating} />
 				</div>
 				<h5>${price}</h5>
 			</div>
