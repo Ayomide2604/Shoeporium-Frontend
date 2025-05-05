@@ -88,7 +88,7 @@ const Header = () => {
 									<a href="./blog.html">Blog</a>
 								</li>
 								<li>
-									<a href="./contact.html">Contacts</a>
+									<Link to="/contact">Contacts</Link>
 								</li>
 							</ul>
 						</nav>
