@@ -1,12 +1,12 @@
 import "./App.css";
 import Header from "./components/Header";
-import OffCanvas from "./components/OffCanvas";
+import Hero from "./pages/Hero";
 
 function App() {
 	return (
 		<div className="app">
-			<OffCanvas />
 			<Header />
+			<Hero />
 		</div>
 	);
 }
