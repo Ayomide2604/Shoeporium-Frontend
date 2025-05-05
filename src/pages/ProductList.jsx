@@ -59,9 +59,11 @@ const ProductList = () => {
 							className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix"
 						>
 							<Product
+								id={product.id}
 								title={product.title}
 								price={product.price}
 								image={product.image}
+								rating={product.rating}
 							/>
 						</div>
 					))}

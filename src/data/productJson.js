@@ -13,6 +13,8 @@ const productJson = [
 		title: "Piqué Biker Jacket",
 		price: 67.24,
 		image: product1,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
 		category: "clothes",
 		rating: 4.5,
 	},
@@ -21,6 +23,8 @@ const productJson = [
 		title: "Piqué Biker Jacket",
 		price: 67.24,
 		image: product2,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
 		category: "clothes",
 		rating: 3,
 	},
@@ -29,6 +33,8 @@ const productJson = [
 		title: "Multi-pocket Chest Bag",
 		price: 43.48,
 		image: product3,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
 		category: "accessories",
 		rating: 3.5,
 	},
@@ -37,6 +43,8 @@ const productJson = [
 		title: "Diagonal Textured Shoe",
 		price: 60.9,
 		image: product4,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
 		category: "shoes",
 		rating: 4,
 	},
@@ -45,6 +53,8 @@ const productJson = [
 		title: "Lether Backpack",
 		price: 31.37,
 		image: product5,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
 		category: "accessories",
 		rating: 5,
 	},
@@ -53,6 +63,9 @@ const productJson = [
 		title: "Ankle Boots",
 		price: 98.49,
 		image: product6,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
+
 		category: "shoes",
 		rating: 3,
 	},
@@ -61,6 +74,9 @@ const productJson = [
 		title: "Basic Flowing Scarf",
 		price: 98.49,
 		image: product7,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
+
 		category: "clothes",
 		rating: 4,
 	},
@@ -69,6 +85,9 @@ const productJson = [
 		title: "Brown Bag",
 		price: 98.49,
 		image: product8,
+		description:
+			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
+
 		category: "accessories",
 		rating: 4.5,
 	},

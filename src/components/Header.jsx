@@ -4,6 +4,7 @@ import {
 	MdOutlineKeyboardArrowDown,
 	MdOutlineClose,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import logo from "../assets/img/logo.png";
 import searchIcon from "../assets/img/icon/search.png";
@@ -49,9 +50,9 @@ const Header = () => {
 				<div className="row">
 					<div className="col-lg-3 col-md-3">
 						<div className="header__logo">
-							<a href="./index.html">
+							<Link to="/">
 								<img src={logo} alt="" />
-							</a>
+							</Link>
 						</div>
 					</div>
 					<div className="col-lg-6 col-md-6">
@@ -121,7 +122,7 @@ const Header = () => {
 							: "offcanvas-menu-overlay"
 					}
 				>
-					<OffCanvas menuOpen={menuOpen} />
+					<OffCanvas menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 				</div>
 			</div>
 		</header>

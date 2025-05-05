@@ -61,6 +61,7 @@ const ProductScreen = () => {
 								{products.map((product) => (
 									<div key={product.id} className="col-lg-4 col-md-6 col-sm-6">
 										<Product
+											id={product.id}
 											title={product.title}
 											price={product.price}
 											image={product.image}

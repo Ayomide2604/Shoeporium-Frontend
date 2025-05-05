@@ -3,11 +3,12 @@ import {
 	MdOutlineKeyboardArrowRight,
 	MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import cartIcon from "../assets/img/icon/cart.png";
 import searchIcon from "../assets/img/icon/search.png";
 import heartIcon from "../assets/img/icon/heart.png";
-const OffCanvas = ({ menuOpen }) => {
+const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 	const [dropDownOpen, setDropDownOpen] = useState(false);
 	return (
 		<>
@@ -15,11 +16,12 @@ const OffCanvas = ({ menuOpen }) => {
 				className={
 					menuOpen ? "offcanvas-menu-wrapper active" : "offcanvas-menu-wrapper"
 				}
+				onClick={() => setMenuOpen(!menuOpen)}
 			>
 				<div className="offcanvas__option">
 					<div className="offcanvas__links">
-						<a href="#">Sign in</a>
-						<a href="#">FAQs</a>
+						<Link to="#">Sign in</Link>
+						<Link to="#">FAQs</Link>
 					</div>
 					<div className="offcanvas__top__hover">
 						<span>
@@ -33,58 +35,58 @@ const OffCanvas = ({ menuOpen }) => {
 					</div>
 				</div>
 				<div className="offcanvas__nav__option">
-					<a href="#" className="search-switch">
+					<Link to="#" className="search-switch">
 						<img src={searchIcon} alt="" />
-					</a>
-					<a href="#">
+					</Link>
+					<Link to="#">
 						<img src={heartIcon} alt="" />
-					</a>
-					<a href="#">
+					</Link>
+					<Link to="#">
 						<img src={cartIcon} alt="" /> <span>0</span>
-					</a>
+					</Link>
 					<div className="price">$0.00</div>
 				</div>
 				<div id="mobile-menu-wrap">
 					<nav className="mobile-menu">
 						<ul>
 							<li className="active">
-								<a href="#">Home</a>
+								<Link to="/">Home</Link>
 							</li>
 							<li>
-								<a href="#">Shop</a>
+								<Link to="products">Shop</Link>
 							</li>
 							<li>
-								<a onClick={() => setDropDownOpen(!dropDownOpen)}>
+								<Link onClick={() => setDropDownOpen(!dropDownOpen)}>
 									Pages{" "}
 									{dropDownOpen ? (
 										<MdOutlineKeyboardArrowDown />
 									) : (
 										<MdOutlineKeyboardArrowRight />
 									)}
-								</a>
+								</Link>
 								<ul className={dropDownOpen ? "dropdown" : "dropdown d-none"}>
 									<li>
-										<a href="#">About Us</a>
+										<Link to="#">About Us</Link>
 									</li>
 									<li>
-										<a href="#">Shop Details</a>
+										<Link to="#">Shop Details</Link>
 									</li>
 									<li>
-										<a href="#">Shopping Cart</a>
+										<Link to="#">Shopping Cart</Link>
 									</li>
 									<li>
-										<a href="#">Check Out</a>
+										<Link to="#">Check Out</Link>
 									</li>
 									<li>
-										<a href="#">Blog Details</a>
+										<Link to="#">Blog Details</Link>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a href="#">Blog</a>
+								<Link to="#">Blog</Link>
 							</li>
 							<li>
-								<a href="#">Contacts</a>
+								<Link to="#">Contacts</Link>
 							</li>
 						</ul>
 					</nav>
