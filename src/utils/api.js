@@ -1,12 +1,11 @@
-// api.js
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: "https://127.0.0.1:8000/api",
-	timeout: 10000,
+	baseURL: import.meta.env.VITE_API_BASE_URL,
+	timeout: 5000,
 });
 
-// Request interceptor
+//  Request interceptor
 api.interceptors.request.use(
 	(config) => {
 		const token = localStorage.getItem("access");
@@ -18,12 +17,12 @@ api.interceptors.request.use(
 	(error) => Promise.reject(error)
 );
 
-// Response interceptor
+// Response Interceptor
 api.interceptors.response.use(
 	(response) => response,
 	(error) => {
 		if (error.response?.status === 401) {
-			window.location.href = "/login";
+			console.error("Unauthorized.");
 		}
 		return Promise.reject(error);
 	}

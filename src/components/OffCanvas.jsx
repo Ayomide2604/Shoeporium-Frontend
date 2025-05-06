@@ -87,7 +87,7 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 								<Link to="#">Blog</Link>
 							</li>
 							<li>
-								<Link to="#">Contacts</Link>
+								<Link to="/contact">Contacts</Link>
 							</li>
 						</ul>
 					</nav>

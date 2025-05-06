@@ -35,7 +35,7 @@ const productJson = [
 		image: product3,
 		description:
 			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
-		category: "accessories",
+		category: "nike",
 		rating: 3.5,
 	},
 	{
@@ -45,7 +45,7 @@ const productJson = [
 		image: product4,
 		description:
 			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
-		category: "shoes",
+		category: "nike",
 		rating: 4,
 	},
 	{
@@ -55,7 +55,7 @@ const productJson = [
 		image: product5,
 		description:
 			"Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening with placket.",
-		category: "accessories",
+		category: "nike",
 		rating: 5,
 	},
 	{

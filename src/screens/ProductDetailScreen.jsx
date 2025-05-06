@@ -1,43 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
 import BreadCrumb from "../components/BreadCrumb";
-import productJson from "../data/productJson";
 import Rating from "../components/Rating";
-import RelatedProducts from "./../pages/RelatedProducts";
+import RelatedProducts from "../pages/RelatedProducts";
+import useProductStore from "../store/useProductstore";
 
 const ProductDetailScreen = () => {
 	const { id } = useParams();
-	const product = productJson.find((product) => product.id === parseInt(id));
-	const relatedProducts = productJson.filter(
-		(related) => related.category == product.category
-	);
-	console.log(relatedProducts);
+	const { product, products, fetchProducts, fetchProductById } =
+		useProductStore();
+
 	const [quantity, setQuantity] = useState(1);
 	const [liked, setLiked] = useState(false);
 
-	const onQuantityChange = (e) => {
-		setQuantity(e.target.value);
-	};
+	useEffect(() => {
+		if (products.length === 0) {
+			fetchProducts().then(() => fetchProductById(id));
+		} else {
+			fetchProductById(id);
+		}
+	}, [id]);
+
+	const relatedProducts = products.filter(
+		(p) => p.collection.id === product?.collection.id && p.id !== product?.id
+	);
+
+	if (!product) return <div>Loading product...</div>;
 
 	return (
 		<>
 			<section className="shop-details">
 				<div className="product__details__pic">
 					<div className="container">
-						<BreadCrumb title={product.title} />
+						<BreadCrumb title={product?.name} />
 						<div className="row d-flex justify-content-center align-items-center">
 							<div className="col-lg-6 col-md-6">
 								<div className="tab-content">
-									<div className="">
+									<div>
 										<div className="product__details__pic__item">
 											<img
-												src={product.image}
-												alt=""
-												height="100%"
-												width="100%"
+												src={product?.images?.[0]?.image_url}
+												alt={product?.name}
+												height="auto"
 												className="mb-3"
+												style={{ objectFit: "contain" }}
 											/>
 										</div>
 									</div>
@@ -45,23 +53,20 @@ const ProductDetailScreen = () => {
 							</div>
 
 							<div className=" product__details__content col-lg-6 col-md-6">
-								<div className="  product__details__text">
-									<p className="text-left">{product.description}</p>
-									<h3 className="text-left">${product.price}</h3>
+								<div className="product__details__text">
+									<p className="text-left">{product?.description}</p>
+									<h3 className="text-left">${product?.price}</h3>
 									<div className="rating d-flex align-items-center">
-										<Rating rating={product.rating} />
+										<Rating rating={4} />
 										<span> - 5 Reviews</span>
 									</div>
 
 									<div className="product__details__cart__option text-left">
-										<div className="quantity mr-3 ">
+										<div className="quantity mr-3">
 											<div className="pro-qty w-100 h-100">
 												<button
-													onClick={() => {
-														setQuantity(quantity - 1);
-													}}
+													onClick={() => setQuantity((q) => Math.max(1, q - 1))}
 													className="btn primary-btn mr-2"
-													disabled={quantity < 1 ? true : false}
 												>
 													-
 												</button>
@@ -69,22 +74,20 @@ const ProductDetailScreen = () => {
 													type="number"
 													min={1}
 													value={quantity}
-													onChange={onQuantityChange}
+													onChange={(e) => setQuantity(Number(e.target.value))}
 													className="mr-2"
-													style={{ height: "100%", overflow: "hidden" }}
 												/>
 												<button
-													className="btn primary-btn "
-													onClick={() => {
-														setQuantity(quantity + 1);
-													}}
+													className="btn primary-btn"
+													onClick={() => setQuantity(quantity + 1)}
 												>
 													+
 												</button>
 											</div>
 										</div>
-										<Link className="btn primary-btn">add to cart</Link>
+										<Link className="btn primary-btn">Add to cart</Link>
 									</div>
+
 									<div
 										onClick={() => setLiked(!liked)}
 										className="product__details__btns__option text-left d-flex align-items-center"
@@ -106,7 +109,7 @@ const ProductDetailScreen = () => {
 				</div>
 			</section>
 
-			<RelatedProducts products={relatedProducts} />
+			<RelatedProducts products={relatedProducts.slice(0, 8)} />
 		</>
 	);
 };

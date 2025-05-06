@@ -24,11 +24,14 @@ const ProductFilter = ({ title, items }) => {
 				>
 					<div className="card-body">
 						<div className="shop__sidebar__categories">
-							<ul className="nice-scroll">
+							<ul className="nice-scroll ">
 								{items.map((item) => (
-									<li key={item}>
-										<a href="#">{titleCase(item)}</a>
-									</li>
+									<div key={item.id}>
+										<li>
+											<a href="#">{titleCase(item.name)}</a>
+										</li>
+										<hr />
+									</div>
 								))}
 							</ul>
 						</div>

@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Product from "../components/Product";
 import productJson from "./../data/productJson";
+import useProductStore from "../store/useProductstore";
 
 const ProductList = () => {
-	const [products, setProducts] = useState(productJson);
+	const { products, loading, error, fetchProducts } = useProductStore();
 	const [activeTab, setActiveTab] = useState("all");
+
+	useEffect(() => {
+		fetchProducts();
+	}, [fetchProducts]);
 
 	const handleFilterProducts = (category) => {
 		setActiveTab(category);
@@ -22,6 +27,11 @@ const ProductList = () => {
 	return (
 		<section className="product spad mt-5">
 			<div className="container">
+				{loading ? (
+					<div id="preloder">
+						<div class="loader"></div>
+					</div>
+				) : null}
 				<div className="row">
 					<div className="col-lg-12">
 						<ul className="filter__controls">
@@ -60,10 +70,10 @@ const ProductList = () => {
 						>
 							<Product
 								id={product.id}
-								title={product.title}
+								name={product.name}
 								price={product.price}
-								image={product.image}
-								rating={product.rating}
+								image={product.images[0].image_url}
+								rating={4}
 							/>
 						</div>
 					))}

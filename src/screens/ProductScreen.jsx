@@ -1,24 +1,33 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import BreadCrumb from "../components/BreadCrumb";
-import productJson from "./../data/productJson";
 import Product from "../components/Product";
 import Pagination from "../components/Pagination";
 import ProductFilter from "./../components/ProductFilter";
 import ProductSearch from "../components/ProductSearch";
+import useProductStore from "../store/useProductstore";
+import useCollectionStore from "../store/useCollectionStore";
 
-const categories = [
-	{
-		id: 1,
-		title: "categories",
-		items: ["shoes", "bags", "accessories", "caps", "kids", "gadgets"],
-	},
-];
 const ProductScreen = () => {
-	const [products, setProducts] = useState(productJson);
+	const { products, loading, error, fetchProducts } = useProductStore();
+	const fetchCollections = useCollectionStore(
+		(state) => state.fetchCollections
+	);
+	const collections = useCollectionStore((state) => state.collections);
+
+	useEffect(() => {
+		fetchProducts();
+		fetchCollections();
+	}, [fetchProducts, fetchCollections]);
 
 	return (
 		<div>
 			<BreadCrumb title="Products" />
+
+			{loading ? (
+				<div id="preloder">
+					<div className="loader"></div>
+				</div>
+			) : null}
 
 			<section className="shop spad">
 				<div className="container">
@@ -28,11 +37,7 @@ const ProductScreen = () => {
 								<ProductSearch />
 								<div className="shop__sidebar__accordion">
 									<div className="accordion" id="accordionExample">
-										<ProductFilter
-											title={categories[0].title}
-											key={categories[0].id}
-											items={categories[0].items}
-										/>
+										<ProductFilter title="Collections" items={collections} />
 									</div>
 								</div>
 							</div>
@@ -62,10 +67,10 @@ const ProductScreen = () => {
 									<div key={product.id} className="col-lg-4 col-md-6 col-sm-6">
 										<Product
 											id={product.id}
-											title={product.title}
+											name={product.name}
 											price={product.price}
-											image={product.image}
-											rating={product.rating}
+											image={product.images[0].image_url}
+											rating={4}
 										/>
 									</div>
 								))}

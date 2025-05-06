@@ -17,10 +17,10 @@ const RelatedProducts = ({ products }) => {
 						>
 							<Product
 								id={product.id}
-								title={product.title}
-								price={product.price}
-								image={product.image}
-								rating={product.rating}
+								name={product?.name}
+								price={product?.price}
+								image={product?.images[0].image_url}
+								rating={4}
 							/>
 						</div>
 					))}
