@@ -2,12 +2,13 @@ import { useState } from "react";
 import {
 	MdOutlineKeyboardArrowRight,
 	MdOutlineKeyboardArrowDown,
+	MdOutlineSearch,
+	MdOutlineShoppingCart,
 } from "react-icons/md";
+import { IoMdHeartEmpty } from "react-icons/io";
+
 import { Link } from "react-router-dom";
 
-import cartIcon from "../assets/img/icon/cart.png";
-import searchIcon from "../assets/img/icon/search.png";
-import heartIcon from "../assets/img/icon/heart.png";
 const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 	const [dropDownOpen, setDropDownOpen] = useState(false);
 	return (
@@ -20,7 +21,7 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 			>
 				<div className="offcanvas__option">
 					<div className="offcanvas__links">
-						<Link to="#">Sign in</Link>
+						<Link to="/login">Sign in</Link>
 						<Link to="#">FAQs</Link>
 					</div>
 					<div className="offcanvas__top__hover">
@@ -36,13 +37,13 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 				</div>
 				<div className="offcanvas__nav__option">
 					<Link to="#" className="search-switch">
-						<img src={searchIcon} alt="" />
+						<MdOutlineSearch color="black" />
 					</Link>
 					<Link to="#">
-						<img src={heartIcon} alt="" />
+						<IoMdHeartEmpty color="black" />
 					</Link>
 					<Link to="/cart">
-						<img src={cartIcon} alt="" /> <span>0</span>
+						<MdOutlineShoppingCart color="black" />
 					</Link>
 					<div className="price">$0.00</div>
 				</div>

@@ -10,6 +10,7 @@ import ProductDetailScreen from "./screens/ProductDetailScreen";
 import useScrollToTop from "./hooks/useScrollToTop";
 import CheckoutScreen from "./screens/CheckoutScreen";
 import ContactScreen from "./screens/ContactScreen";
+import LoginScreen from "./components/LoginScreen";
 
 function App() {
 	useScrollToTop();
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/cart" element={<CartScreen />} />
 				<Route path="/checkout" element={<CheckoutScreen />} />
 				<Route path="/contact" element={<ContactScreen />} />
+				<Route path="/login" element={<LoginScreen />} />
 			</Routes>
 
 			<Footer />

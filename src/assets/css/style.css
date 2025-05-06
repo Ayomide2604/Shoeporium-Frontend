@@ -3337,12 +3337,12 @@ ol {
 
 .contact__form input {
 	height: 50px;
-	width: 100%;
+	width: 50%;
 	border: 1px solid #e1e1e1;
 	padding-left: 20px;
 	font-size: 15px;
 	color: #b7b7b7;
-	margin-bottom: 30px;
+	margin-bottom: 30px;	
 }
 
 .contact__form input::-webkit-input-placeholder {

@@ -3,17 +3,19 @@ import {
 	MdOutlineMenu,
 	MdOutlineKeyboardArrowDown,
 	MdOutlineClose,
+	MdOutlineSearch,
+	MdOutlineShoppingCart,
 } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { IoMdHeartEmpty } from "react-icons/io";
+
+import { Link, useLocation } from "react-router-dom";
 
 import logo from "../assets/img/logo.png";
-import searchIcon from "../assets/img/icon/search.png";
-import cartIcon from "../assets/img/icon/cart.png";
-import heartIcon from "../assets/img/icon/heart.png";
 import OffCanvas from "./OffCanvas";
 
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const currentPath = useLocation().pathname;
 	return (
 		<header className="header">
 			<div className="header__top">
@@ -27,7 +29,7 @@ const Header = () => {
 						<div className="col-lg-6 col-md-5">
 							<div className="header__top__right">
 								<div className="header__top__links">
-									<a href="#">Sign in</a>
+									<Link to="/login">Sign in</Link>
 									<a href="#">FAQs</a>
 								</div>
 								<div className="header__top__hover">
@@ -47,25 +49,25 @@ const Header = () => {
 				</div>
 			</div>
 			<div className="container">
-				<div className="row">
+				<div className="row d-flex align-items-center">
 					<div className="col-lg-3 col-md-3">
 						<div className="header__logo">
 							<Link to="/">
-								<img src={logo} alt="" />
+								<img src={logo} />
 							</Link>
 						</div>
 					</div>
 					<div className="col-lg-6 col-md-6">
 						<nav className="header__menu mobile-menu ">
 							<ul>
-								<li className="active">
+								<li className={currentPath === "/" ? "active" : ""}>
 									<a href="/">Home</a>
 								</li>
-								<li>
+								<li className={currentPath === "/products" ? "active" : ""}>
 									<a href="/products">Shop</a>
 								</li>
 								<li>
-									<a href="#">Pages</a>
+									<a href="#">About</a>
 									<ul className="dropdown">
 										<li>
 											<Link to="./about.html">About Us</Link>
@@ -88,21 +90,21 @@ const Header = () => {
 									<a href="./blog.html">Blog</a>
 								</li>
 								<li>
-									<Link to="/contact">Contacts</Link>
+									<Link to="/contact">Contact</Link>
 								</li>
 							</ul>
 						</nav>
 					</div>
 					<div className="col-lg-3 col-md-3">
 						<div className="header__nav__option">
-							<a href="#" className="search-switch">
-								<img src={searchIcon} alt="" />
+							<a href="#" className="search-switch ">
+								<MdOutlineSearch color="black" />
 							</a>
 							<a href="#">
-								<img src={heartIcon} alt="" />
+								<IoMdHeartEmpty color="black" />
 							</a>
 							<Link to="/cart">
-								<img src={cartIcon} alt="" /> <span>0</span>
+								<MdOutlineShoppingCart color="black" />
 							</Link>
 							<div className="price">$0.00</div>
 						</div>

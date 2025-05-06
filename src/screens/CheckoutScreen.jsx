@@ -31,14 +31,17 @@ const CheckoutScreen = () => {
 									<div
 										className={
 											hasCoupon
-												? "d-flex justify-content-between align-items-center  px-3 w-100 "
+												? "d-flex justify-content-center align-items-center "
 												: " d-none"
 										}
 									>
 										<div className="w-100 mr-2">
 											<Coupon />
 										</div>
-										<MdOutlineClose onClick={() => setHasCoupon(false)} />
+										<MdOutlineClose
+											onClick={() => setHasCoupon(false)}
+											className=""
+										/>
 									</div>
 									<h6 className="checkout__title">Billing Details</h6>
 									<div className="row">
