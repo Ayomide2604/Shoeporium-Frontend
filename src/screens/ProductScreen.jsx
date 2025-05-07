@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Product from "../components/Product";
 import Pagination from "../components/Pagination";
@@ -6,18 +6,32 @@ import ProductFilter from "./../components/ProductFilter";
 import ProductSearch from "../components/ProductSearch";
 import useProductStore from "../store/useProductstore";
 import useCollectionStore from "../store/useCollectionStore";
+import ProductSorter from "../components/ProductSorter";
 
 const ProductScreen = () => {
 	const { products, loading, error, fetchProducts } = useProductStore();
-	const fetchCollections = useCollectionStore(
-		(state) => state.fetchCollections
-	);
-	const collections = useCollectionStore((state) => state.collections);
+	const { fetchCollections, collections } = useCollectionStore();
+	const [selectedCollection, setSelectedCollection] = useState(null);
+	const [selectedOrder, setSelectedOrder] = useState(null);
+	const [page, setPage] = useState(1);
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
-		fetchProducts();
 		fetchCollections();
-	}, [fetchProducts, fetchCollections]);
+	}, [fetchCollections]);
+
+	useEffect(() => {
+		fetchProducts(selectedCollection, selectedOrder, page, search);
+	}, [selectedCollection, selectedOrder, page, search]);
+
+	const handleSortChange = (e) => {
+		setSelectedOrder(e.target.value);
+	};
+
+	const handleOnSearch = (e) => {
+		setSearch(e);
+		
+	};
 
 	return (
 		<div>
@@ -34,32 +48,30 @@ const ProductScreen = () => {
 					<div className="row">
 						<div className="col-lg-3">
 							<div className="shop__sidebar">
-								<ProductSearch />
+								<ProductSearch onSearch={handleOnSearch} />
 								<div className="shop__sidebar__accordion">
 									<div className="accordion" id="accordionExample">
-										<ProductFilter title="Collections" items={collections} />
+										<ProductFilter
+											title="Collections"
+											items={collections}
+											selectedItem={selectedCollection}
+											onSelect={setSelectedCollection}
+										/>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div className="col-lg-9">
 							<div className="shop__product__option">
-								<div className="row">
-									<div className="col-lg-6 col-md-6 col-sm-6">
+								<div className="row d-flex justify-content-between align-items-center">
+									<div className="col-6">
 										<div className="shop__product__option__left">
-											<p>Showing All {products.length} results</p>
+											<p className="mt-3">
+												Showing All {products.length} results
+											</p>
 										</div>
 									</div>
-									<div className="col-lg-6 col-md-6 col-sm-6">
-										<div className=" shop__product__option__right">
-											<p>Sort by Price:</p>
-											<select className="btn btn-sm">
-												<option value="">Low To High</option>
-												<option value="">$0 - $55</option>
-												<option value="">$55 - $100</option>
-											</select>
-										</div>
-									</div>
+									<ProductSorter onChange={handleSortChange} />
 								</div>
 							</div>
 							<div className="row">

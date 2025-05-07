@@ -12,12 +12,15 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../assets/img/logo.png";
 import OffCanvas from "./OffCanvas";
+import useAuthStore from "../store/useAuthStore";
 
 const Header = () => {
+	const { user, logout } = useAuthStore();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const currentPath = useLocation().pathname;
+
 	return (
-		<header className="header">
+		<header className="header sticky-top">
 			<div className="header__top">
 				<div className="container">
 					<div className="row">
@@ -29,19 +32,35 @@ const Header = () => {
 						<div className="col-lg-6 col-md-5">
 							<div className="header__top__right">
 								<div className="header__top__links">
-									<Link to="/login">Sign in</Link>
-									<a href="#">FAQs</a>
-								</div>
-								<div className="header__top__hover">
-									<span>
-										Usd
-										<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
-									</span>
-									<ul>
-										<li>USD</li>
-										<li>EUR</li>
-										<li>USD</li>
-									</ul>
+									{user ? (
+										<>
+											<div className="header__top__hover ">
+												<span className="mr-3">
+													Welcome {user?.username}
+													<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
+												</span>
+												<ul className="">
+													<li className="d-flex justify-content-center align-items-center my-2">
+														Profile
+													</li>
+													<li className="d-flex justify-content-center align-items-center my-2">
+														Orders
+													</li>
+													<li className="d-flex justify-content-center align-items-center my-2">
+														Settings
+													</li>
+												</ul>
+											</div>
+											<div className="header__top__hover ">
+												<span onClick={logout}>Logout</span>
+											</div>
+										</>
+									) : (
+										<>
+											<Link to="/login">Sign in</Link>
+											<Link to="/signup">Register</Link>
+										</>
+									)}
 								</div>
 							</div>
 						</div>
@@ -61,33 +80,16 @@ const Header = () => {
 						<nav className="header__menu mobile-menu ">
 							<ul>
 								<li className={currentPath === "/" ? "active" : ""}>
-									<a href="/">Home</a>
+									<Link to="/">Home</Link>
 								</li>
 								<li className={currentPath === "/products" ? "active" : ""}>
-									<a href="/products">Shop</a>
+									<Link to="/products">Shop</Link>
 								</li>
 								<li>
-									<a href="#">About</a>
-									<ul className="dropdown">
-										<li>
-											<Link to="./about.html">About Us</Link>
-										</li>
-										<li>
-											<Link to="./shop-details.html">Shop Details</Link>
-										</li>
-										<li>
-											<Link to="./shopping-cart.html">Shopping Cart</Link>
-										</li>
-										<li>
-											<Link to="./checkout.html">Check Out</Link>
-										</li>
-										<li>
-											<Link to="./blog-details.html">Blog Details</Link>
-										</li>
-									</ul>
+									<Link to="#">About</Link>
 								</li>
 								<li>
-									<a href="./blog.html">Blog</a>
+									<Link to="#">Blog</Link>
 								</li>
 								<li>
 									<Link to="/contact">Contact</Link>
@@ -106,7 +108,6 @@ const Header = () => {
 							<Link to="/cart">
 								<MdOutlineShoppingCart color="black" />
 							</Link>
-							<div className="price">$0.00</div>
 						</div>
 					</div>
 				</div>

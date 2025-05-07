@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useAuthStore from "../store/useAuthStore";
 
 const LoginScreen = () => {
+	const { login, error, loading } = useAuthStore();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		login(email, password);
+	};
+
 	return (
 		<section className="d-flex align-items-center justify-content-center my-5">
 			<div className="container">
@@ -8,7 +19,8 @@ const LoginScreen = () => {
 					<div className="col-md-6 col-lg-5">
 						<div className="card p-4 shadow-sm">
 							<h3 className="text-center mb-4">Login to Your Account</h3>
-							<form className="contact__form">
+							{error && <p style={{ color: "red" }}>{error}</p>}
+							<form className="contact__form" onSubmit={handleSubmit}>
 								<div className="form-group">
 									<label htmlFor="email">Email address:</label>
 									<input
@@ -16,6 +28,8 @@ const LoginScreen = () => {
 										className=" w-100"
 										id="email"
 										placeholder="Enter email"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
 										required
 									/>
 								</div>
@@ -25,7 +39,9 @@ const LoginScreen = () => {
 										type="password"
 										className=" w-100"
 										id="password"
+										value={password}
 										placeholder="Password"
+										onChange={(e) => setPassword(e.target.value)}
 										required
 									/>
 								</div>
@@ -47,8 +63,12 @@ const LoginScreen = () => {
 										Forgot password?
 									</a>
 								</div>
-								<button type="submit" className="btn site-btn btn-block mt-3">
-									Login
+								<button
+									type="submit"
+									className="btn site-btn btn-block mt-3"
+									disabled={loading}
+								>
+									{loading ? "Logging in ..." : "Login"}
 								</button>
 							</form>
 							<p className="text-center mt-3 mb-0">

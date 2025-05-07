@@ -3,17 +3,34 @@ import api from "../utils/api";
 
 const useProductStore = create((set) => ({
 	products: [],
+	count: 0,
 	product: null,
 	loading: false,
 	error: null,
+	next: null,
+	previous: null,
 
-	fetchProducts: async () => {
-		set((state) => ({ ...state, loading: true, error: null }));
+	fetchProducts: async (
+		collectionId = null,
+		ordering = "-date_created",
+		page = 1,
+		search = ""
+	) => {
+		set((state) => ({ ...state, loading: false, error: null }));
 		try {
-			const response = await api.get("products/");
+			const params = new URLSearchParams();
+			if (collectionId) params.append("collection", collectionId);
+			if (ordering) params.append("ordering", ordering);
+			if (page) params.append("page", page);
+			if (search) params.append("search", search);
+
+			const response = await api.get(`products/?${params.toString()}`);
 			set((state) => ({
 				...state,
-				products: response.data,
+				products: response.data.results,
+				count: response.data.count,
+				next: response.data.next,
+				previous: response.data.previous,
 				loading: false,
 			}));
 		} catch (error) {
