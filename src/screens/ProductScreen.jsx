@@ -25,7 +25,13 @@ const ProductScreen = () => {
 	}, [fetchCollections]);
 
 	useEffect(() => {
-		fetchProducts(selectedCollection, selectedOrder, page, search, pageSize);
+		fetchProducts({
+			selectedCollection,
+			selectedOrder,
+			page,
+			search,
+			pageSize,
+		});
 	}, [selectedCollection, selectedOrder, page, search, pageSize]);
 
 	const handleSortChange = (e) => {

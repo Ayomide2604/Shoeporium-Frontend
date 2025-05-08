@@ -15,7 +15,7 @@ const HomeScreen = () => {
 	}, [fetchCollections]);
 
 	useEffect(() => {
-		fetchProducts(selectedCollection);
+		fetchProducts({ collectionId: selectedCollection, pageSize: 12 });
 	}, [selectedCollection]);
 	return (
 		<>

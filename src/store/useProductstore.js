@@ -10,13 +10,13 @@ const useProductStore = create((set) => ({
 	next: null,
 	previous: null,
 
-	fetchProducts: async (
+	fetchProducts: async ({
 		collectionId = null,
 		ordering = "-date_created",
 		page = 1,
 		search = "",
-		pageSize = 10
-	) => {
+		pageSize = 10,
+	}) => {
 		set((state) => ({ ...state, loading: false, error: null }));
 		try {
 			const params = new URLSearchParams();
