@@ -14,7 +14,8 @@ const useProductStore = create((set) => ({
 		collectionId = null,
 		ordering = "-date_created",
 		page = 1,
-		search = ""
+		search = "",
+		pageSize = 10
 	) => {
 		set((state) => ({ ...state, loading: false, error: null }));
 		try {
@@ -23,6 +24,7 @@ const useProductStore = create((set) => ({
 			if (ordering) params.append("ordering", ordering);
 			if (page) params.append("page", page);
 			if (search) params.append("search", search);
+			if (pageSize) params.append("page_size", pageSize);
 
 			const response = await api.get(`products/?${params.toString()}`);
 			set((state) => ({

@@ -29,10 +29,21 @@ const useAuthStore = create((set) => ({
 		}
 	},
 
+	register: async (formData) => {
+		try {
+			const response = await api.post("/auth/users/", formData);
+			alert("user Registered Successfully");
+			window.location.href = "/login";
+		} catch (error) {
+			console.error(error.message);
+		}
+	},
+
 	logout: () => {
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		localStorage.removeItem("user");
+		localStorage.removeItem("cart");
 		set((state) => ({
 			...state,
 			user: null,

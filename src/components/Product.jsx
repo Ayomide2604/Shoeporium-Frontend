@@ -5,8 +5,11 @@ import compareIcon from "../assets/img/icon/compare.png";
 import searchIcon from "../assets/img/icon/search.png";
 import Rating from "./Rating";
 import { FaRegHeart, FaRegEye } from "react-icons/fa";
+import useCartStore from "../store/useCartStore";
+import formatter from "../utils/currencyFormatter";
 const Product = ({ id, image, name, price, rating }) => {
 	const navigate = useNavigate();
+	const { addToCart } = useCartStore();
 	return (
 		<div className="product__item">
 			<div
@@ -43,14 +46,14 @@ const Product = ({ id, image, name, price, rating }) => {
 
 			<div className="product__item__text">
 				<h6>{name}</h6>
-				<a href="#" className="add-cart ">
+				<a href="#" className="add-cart" onClick={() => addToCart(id)}>
 					<MdOutlineShoppingCart />
 					Add To Cart
 				</a>
 				<div className="rating">
 					<Rating rating={rating} />
 				</div>
-				<h5>${price}</h5>
+				<h5>{formatter.format(price)}</h5>
 			</div>
 		</div>
 	);

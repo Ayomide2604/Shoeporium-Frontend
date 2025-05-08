@@ -9,7 +9,6 @@ const HeroSlider = ({ slides }) => {
 		<div className="hero-slider">
 			<Swiper
 				slidesPerView={1}
-				spaceBetween={50}
 				modules={[Navigation]}
 				loop={true}
 				navigation={{

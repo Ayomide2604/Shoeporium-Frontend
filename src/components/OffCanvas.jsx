@@ -32,7 +32,7 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 							<>
 								<div className="offcanvas__top__hover">
 									<span className="mr-3">
-										Welcome {user?.username}
+										Welcome {user?.first_name}
 										<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
 									</span>
 									<ul>
@@ -54,7 +54,7 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 						) : (
 							<>
 								<Link to="/login">Sign in</Link>
-								<Link to="#">Register</Link>
+								<Link to="/signup">Register</Link>
 							</>
 						)}
 					</div>

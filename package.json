@@ -17,6 +17,7 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3",
     "react-star-ratings": "^2.3.0",
+    "react-toastify": "^11.0.5",
     "swiper": "^11.2.6",
     "title-case": "^4.3.2",
     "zustand": "^5.0.4"

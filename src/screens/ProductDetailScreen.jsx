@@ -6,11 +6,15 @@ import BreadCrumb from "../components/BreadCrumb";
 import Rating from "../components/Rating";
 import RelatedProducts from "../pages/RelatedProducts";
 import useProductStore from "../store/useProductstore";
+import useCartStore from "../store/useCartStore";
+import formatter from "../utils/currencyFormatter";
 
 const ProductDetailScreen = () => {
 	const { id } = useParams();
 	const { product, products, fetchProducts, fetchProductById } =
 		useProductStore();
+
+	const { addToCart } = useCartStore();
 
 	const [quantity, setQuantity] = useState(1);
 	const [liked, setLiked] = useState(false);
@@ -55,7 +59,9 @@ const ProductDetailScreen = () => {
 							<div className=" product__details__content col-lg-6 col-md-6">
 								<div className="product__details__text">
 									<p className="text-left">{product?.description}</p>
-									<h3 className="text-left">${product?.price}</h3>
+									<h3 className="text-left">
+										{formatter.format(product?.price)}
+									</h3>
 									<div className="rating d-flex align-items-center">
 										<Rating rating={4} />
 										<span> - 5 Reviews</span>
@@ -85,7 +91,12 @@ const ProductDetailScreen = () => {
 												</button>
 											</div>
 										</div>
-										<Link className="btn primary-btn">Add to cart</Link>
+										<Link
+											className="btn primary-btn"
+											onClick={() => addToCart(product.id, quantity)}
+										>
+											Add to cart
+										</Link>
 									</div>
 
 									<div

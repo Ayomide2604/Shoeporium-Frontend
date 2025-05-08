@@ -9,7 +9,7 @@ const useCollectionStore = create((set) => ({
 	fetchCollections: async () => {
 		set((state) => ({ ...state, loading: true, error: null }));
 		try {
-			const response = await api.get("collections/");
+			const response = await api.get("/collections/");
 			set((state) => ({
 				...state,
 				collections: response.data,

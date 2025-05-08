@@ -7,13 +7,17 @@ import ProductSearch from "../components/ProductSearch";
 import useProductStore from "../store/useProductstore";
 import useCollectionStore from "../store/useCollectionStore";
 import ProductSorter from "../components/ProductSorter";
+import useCartStore from "../store/useCartStore";
+import PageSize from "../components/pageSize";
 
 const ProductScreen = () => {
-	const { products, loading, error, fetchProducts } = useProductStore();
+	const { products, loading, error, fetchProducts, count } = useProductStore();
 	const { fetchCollections, collections } = useCollectionStore();
 	const [selectedCollection, setSelectedCollection] = useState(null);
 	const [selectedOrder, setSelectedOrder] = useState(null);
 	const [page, setPage] = useState(1);
+	const [pageSize, setPageSize] = useState(10);
+
 	const [search, setSearch] = useState("");
 
 	useEffect(() => {
@@ -21,8 +25,8 @@ const ProductScreen = () => {
 	}, [fetchCollections]);
 
 	useEffect(() => {
-		fetchProducts(selectedCollection, selectedOrder, page, search);
-	}, [selectedCollection, selectedOrder, page, search]);
+		fetchProducts(selectedCollection, selectedOrder, page, search, pageSize);
+	}, [selectedCollection, selectedOrder, page, search, pageSize]);
 
 	const handleSortChange = (e) => {
 		setSelectedOrder(e.target.value);
@@ -30,7 +34,11 @@ const ProductScreen = () => {
 
 	const handleOnSearch = (e) => {
 		setSearch(e);
-		
+	};
+
+	const handlePageSize = (e) => {
+		setPageSize(Number(e.target.value));
+		setPage(1);
 	};
 
 	return (
@@ -66,12 +74,18 @@ const ProductScreen = () => {
 								<div className="row d-flex justify-content-between align-items-center">
 									<div className="col-6">
 										<div className="shop__product__option__left">
-											<p className="mt-3">
+											<h5 className="">
 												Showing All {products.length} results
-											</p>
+											</h5>
 										</div>
 									</div>
-									<ProductSorter onChange={handleSortChange} />
+									<div className="d-flex justify-content-between align-items-center">
+										<PageSize
+											pageSize={pageSize}
+											handlePageSize={handlePageSize}
+										/>
+										<ProductSorter onChange={handleSortChange} />
+									</div>
 								</div>
 							</div>
 							<div className="row">
@@ -88,7 +102,12 @@ const ProductScreen = () => {
 								))}
 							</div>
 							<div className="row">
-								<Pagination />
+								<Pagination
+									page={page}
+									count={count}
+									pageSize={pageSize}
+									onPageChange={(newPage) => setPage(newPage)}
+								/>
 							</div>
 						</div>
 					</div>

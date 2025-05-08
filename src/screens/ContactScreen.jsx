@@ -1,4 +1,5 @@
 import BreadCrumb from "../components/BreadCrumb";
+import ContactForm from "../components/ContactForm";
 
 const ContactScreen = () => {
 	return (
@@ -19,14 +20,14 @@ const ContactScreen = () => {
 								</div>
 								<ul>
 									<li>
-										<h4>America</h4>
+										<h4>Lagos</h4>
 										<p>
 											195 E Parker Square Dr, Parker, CO 801 <br />
 											+43 982-314-0958
 										</p>
 									</li>
 									<li>
-										<h4>France</h4>
+										<h4>Ibadan</h4>
 										<p>
 											109 Avenue Léon, 63 Clermont-Ferrand <br />
 											+12 345-423-9893
@@ -36,27 +37,7 @@ const ContactScreen = () => {
 							</div>
 						</div>
 						<div className="col-lg-6 col-md-6">
-							<div className="contact__form">
-								<form action="#">
-									<div className="row">
-										<div className="col-lg-6">
-											<input type="text" placeholder="Name" required />
-										</div>
-										<div className="col-lg-6">
-											<input type="email" placeholder="Email" required />
-										</div>
-										<div className="col-lg-12">
-											<input type="text" placeholder="Subject" required />
-										</div>
-										<div className="col-lg-12">
-											<textarea placeholder="Message" defaultValue={""} />
-											<button type="submit" className="site-btn">
-												Send Message
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
+							<ContactForm />
 						</div>
 					</div>
 				</div>

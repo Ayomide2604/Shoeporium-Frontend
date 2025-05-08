@@ -13,11 +13,13 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import OffCanvas from "./OffCanvas";
 import useAuthStore from "../store/useAuthStore";
+import useCartStore from "./../store/useCartStore";
 
 const Header = () => {
 	const { user, logout } = useAuthStore();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const currentPath = useLocation().pathname;
+	const { totalItems } = useCartStore();
 
 	return (
 		<header className="header sticky-top">
@@ -36,7 +38,7 @@ const Header = () => {
 										<>
 											<div className="header__top__hover ">
 												<span className="mr-3">
-													Welcome {user?.username}
+													Welcome ({user?.first_name})
 													<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
 												</span>
 												<ul className="">
@@ -107,6 +109,17 @@ const Header = () => {
 							</a>
 							<Link to="/cart">
 								<MdOutlineShoppingCart color="black" />
+								<span
+									className="badge"
+									style={{
+										position: "relative",
+										top: "-10px",
+										backgroundColor: "black",
+										color: "white",
+									}}
+								>
+									{totalItems}
+								</span>
 							</Link>
 						</div>
 					</div>
