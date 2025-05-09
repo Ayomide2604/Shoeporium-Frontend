@@ -11,7 +11,6 @@ import useAuthStore from "./../store/useAuthStore";
 import logo from "../assets/img/logo.png";
 
 const OffCanvas = ({ menuOpen, setMenuOpen }) => {
-	const [dropDownOpen, setDropDownOpen] = useState(false);
 	const { user, logout } = useAuthStore();
 
 	return (
@@ -36,26 +35,38 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 										<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
 									</span>
 									<ul>
-										<ul className="">
+										<ul
+											onClick={() => {
+												setMenuOpen(!menuOpen);
+											}}
+										>
 											<li className="d-flex justify-content-center align-items-center my-2">
-												Profile
+												<Link to="/account" className="text-white">
+													Profile
+												</Link>
 											</li>
 											<li className="d-flex justify-content-center align-items-center my-2">
-												Orders
+												<Link className="text-white">Orders</Link>
 											</li>
 											<li className="d-flex justify-content-center align-items-center my-2">
-												Settings
+												<Link className="text-white">Settings</Link>
 											</li>
 										</ul>
 									</ul>
 								</div>
-								<span onClick={logout}>Logout</span>
+								<div onClick={() => setMenuOpen(!menuOpen)}>
+									<span onClick={logout}>Logout</span>
+								</div>
 							</>
 						) : (
-							<>
+							<div
+								onClick={() => {
+									setMenuOpen(!menuOpen);
+								}}
+							>
 								<Link to="/login">Sign in</Link>
 								<Link to="/signup">Register</Link>
-							</>
+							</div>
 						)}
 					</div>
 				</div>
@@ -72,45 +83,21 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 				</div>
 				<div id="mobile-menu-wrap">
 					<nav className="mobile-menu">
-						<ul>
+						<ul onClick={() => setMenuOpen(!menuOpen)}>
 							<li className="active">
 								<Link to="/">Home</Link>
 							</li>
 							<li>
-								<Link to="products">Shop</Link>
+								<Link to="/about">About</Link>
 							</li>
 							<li>
-								<Link onClick={() => setDropDownOpen(!dropDownOpen)}>
-									Pages{" "}
-									{dropDownOpen ? (
-										<MdOutlineKeyboardArrowDown />
-									) : (
-										<MdOutlineKeyboardArrowRight />
-									)}
-								</Link>
-								<ul className={dropDownOpen ? "dropdown" : "dropdown d-none"}>
-									<li>
-										<Link to="#">About Us</Link>
-									</li>
-									<li>
-										<Link to="#">Shop Details</Link>
-									</li>
-									<li>
-										<Link to="#">Shopping Cart</Link>
-									</li>
-									<li>
-										<Link to="#">Check Out</Link>
-									</li>
-									<li>
-										<Link to="#">Blog Details</Link>
-									</li>
-								</ul>
+								<Link to="/products">Shop</Link>
 							</li>
 							<li>
 								<Link to="#">Blog</Link>
 							</li>
 							<li>
-								<Link to="/contact">Contacts</Link>
+								<Link to="/contact">Contact</Link>
 							</li>
 						</ul>
 					</nav>

@@ -7,6 +7,8 @@ const useAuthStore = create((set) => ({
 	refreshToken: localStorage.getItem("refreshToken") || null,
 	error: null,
 	loading: false,
+	uploadSuccess: false,
+	uploadError: null,
 
 	login: async (email, password) => {
 		try {
@@ -20,9 +22,8 @@ const useAuthStore = create((set) => ({
 			}));
 
 			const userRes = await api.get("auth/users/me/");
-			console.log(userRes.data);
 			localStorage.setItem("user", JSON.stringify(userRes.data));
-			set((state) => ({ user: JSON.stringify(userRes.data) }));
+			set((state) => ({ ...state, user: userRes.data }));
 			window.location.href = "/";
 		} catch (err) {
 			set((state) => ({ ...state, error: "Invalid login credentials" }));
@@ -32,7 +33,7 @@ const useAuthStore = create((set) => ({
 	register: async (formData) => {
 		try {
 			const response = await api.post("/auth/users/", formData);
-			alert("user Registered Successfully");
+			alert("User Registered Successfully");
 			window.location.href = "/login";
 		} catch (error) {
 			console.error(error.message);
@@ -59,6 +60,33 @@ const useAuthStore = create((set) => ({
 			set((state) => ({ ...state, user: response.data }));
 		} catch (err) {
 			console.log("Not authenticated");
+		}
+	},
+
+	editProfileImage: async (id, file) => {
+		set({ loading: true, uploadError: null, uploadSuccess: false });
+		try {
+			const formData = new FormData();
+			formData.append("image", file);
+
+			const response = await api.put(
+				`/profile/profile-images/${id}/`,
+				formData,
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			);
+
+			if (response.status === 200) {
+				set({ uploadSuccess: true });
+				window.location.reload();
+			}
+		} catch (error) {
+			set({ uploadError: error.message });
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));

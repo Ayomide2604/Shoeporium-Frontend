@@ -4,6 +4,7 @@ import BreadCrumb from "./../components/BreadCrumb";
 import Coupon from "./../components/Coupon";
 import useCartStore from "../store/useCartStore";
 import CartSummary from "../components/CartSummary";
+import { Link } from "react-router-dom";
 
 const CartScreen = () => {
 	const { fetchUserCart, removeFromCart, totalPrice, items } = useCartStore();
@@ -22,21 +23,23 @@ const CartScreen = () => {
 							{items?.length > 0 ? (
 								<CartTable items={items} onDelete={removeFromCart} />
 							) : (
-								<h2>No Products Yet</h2>
+								<h2 className="mb-3">No Products Yet</h2>
 							)}
-							<div className="row">
-								<div className="col-lg-6 col-md-6 col-sm-6">
+							<div className="row d-flex">
+								<div className="col-12 my-3">
 									<div className="continue__btn">
-										<a href="#">Continue Shopping</a>
+										<Link to="/products">Continue Shopping</Link>
 									</div>
 								</div>
-								<div className="col-lg-6 col-md-6 col-sm-6">
-									<div className="continue__btn update__btn">
-										<a href="#">
-											<i className="fa fa-spinner" /> Update cart
-										</a>
+								{items?.length > 0 && (
+									<div className="col-lg-6 col-md-6 col-sm-6">
+										<div className="continue__btn update__btn">
+											<a href="#">
+												<i className="fa fa-spinner" /> Update cart
+											</a>
+										</div>
 									</div>
-								</div>
+								)}
 							</div>
 						</div>
 						<div className="col-lg-4">

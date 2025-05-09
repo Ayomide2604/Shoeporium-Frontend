@@ -3895,3 +3895,39 @@ ol {
 		height: 250px;
 	}
 }
+
+.profile-image-container {
+	position: relative;
+	display: inline-block;
+	transition: filter 0.3s;
+}
+
+.profile-image-container:hover {
+	filter: brightness(0.6);
+}
+
+.profile-image-container .upload-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border-radius: 50%;
+	padding: 10px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.profile-image-container:hover .upload-icon {
+	opacity: 1;
+}
+
+.upload-icon:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}

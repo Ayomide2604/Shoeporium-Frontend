@@ -41,15 +41,15 @@ const Header = () => {
 													Welcome ({user?.first_name})
 													<MdOutlineKeyboardArrowDown className="arrow_carrot-down" />
 												</span>
-												<ul className="">
+												<ul>
 													<li className="d-flex justify-content-center align-items-center my-2">
-														Profile
+														<Link className="text-dark">Profile</Link>
 													</li>
 													<li className="d-flex justify-content-center align-items-center my-2">
-														Orders
+														<Link className="text-dark">Orders</Link>
 													</li>
 													<li className="d-flex justify-content-center align-items-center my-2">
-														Settings
+														<Link className="text-dark">Settings</Link>
 													</li>
 												</ul>
 											</div>
