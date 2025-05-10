@@ -1,8 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import heartIcon from "../assets/img/icon/heart.png";
-import compareIcon from "../assets/img/icon/compare.png";
-import searchIcon from "../assets/img/icon/search.png";
+import defaultProduct from "../assets/img/default_product.jpg";
 import Rating from "./Rating";
 import { FaRegHeart, FaRegEye } from "react-icons/fa";
 import useCartStore from "../store/useCartStore";
@@ -15,7 +13,7 @@ const Product = ({ id, image, name, price, rating }) => {
 			<div
 				className="product__item__pic set-bg"
 				style={{
-					backgroundImage: `url(${image})`,
+					backgroundImage: `url(${image}) ` || defaultProduct,
 					backgroundSize: "contain",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
