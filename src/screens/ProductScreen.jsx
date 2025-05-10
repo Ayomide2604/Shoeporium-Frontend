@@ -7,8 +7,7 @@ import ProductSearch from "../components/ProductSearch";
 import useProductStore from "../store/useProductstore";
 import useCollectionStore from "../store/useCollectionStore";
 import ProductSorter from "../components/ProductSorter";
-import useCartStore from "../store/useCartStore";
-import PageSize from "../components/pageSize";
+import PageSize from "../components/PageSize";
 
 const ProductScreen = () => {
 	const { products, productsLoading, fetchProducts, count } = useProductStore();
