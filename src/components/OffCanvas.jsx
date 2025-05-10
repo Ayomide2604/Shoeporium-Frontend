@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	MdOutlineKeyboardArrowRight,
 	MdOutlineKeyboardArrowDown,
@@ -8,10 +8,11 @@ import {
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 import useAuthStore from "./../store/useAuthStore";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/site-logo.png";
 
 const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 	const { user, logout } = useAuthStore();
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -21,8 +22,21 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 				}
 			>
 				<div className="header__logo">
-					<Link to="/">
-						<img src={logo} />
+					<Link
+						to="/"
+						onClick={() => {
+							setMenuOpen(!menuOpen);
+						}}
+						className="d-flex justify-content-center align-items-center"
+					>
+						<img
+							src={logo}
+							style={{
+								height: "40px",
+								width: "80px",
+								objectFit: "cover",
+							}}
+						/>
 					</Link>
 				</div>
 				<div className="offcanvas__option">
@@ -46,7 +60,9 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 												</Link>
 											</li>
 											<li className="d-flex justify-content-center align-items-center my-2">
-												<Link className="text-white">Orders</Link>
+												<Link to="account/orders" className="text-white">
+													Orders
+												</Link>
 											</li>
 											<li className="d-flex justify-content-center align-items-center my-2">
 												<Link className="text-white">Settings</Link>
@@ -55,7 +71,13 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 									</ul>
 								</div>
 								<div onClick={() => setMenuOpen(!menuOpen)}>
-									<span onClick={logout}>Logout</span>
+									<span
+										onClick={() => {
+											logout(navigate);
+										}}
+									>
+										Logout
+									</span>
 								</div>
 							</>
 						) : (
@@ -78,7 +100,10 @@ const OffCanvas = ({ menuOpen, setMenuOpen }) => {
 						<IoMdHeartEmpty color="black" />
 					</Link>
 					<Link to="/cart">
-						<MdOutlineShoppingCart color="black" />
+						<MdOutlineShoppingCart
+							color="black"
+							onClick={() => setMenuOpen(!menuOpen)}
+						/>
 					</Link>
 				</div>
 				<div id="mobile-menu-wrap">

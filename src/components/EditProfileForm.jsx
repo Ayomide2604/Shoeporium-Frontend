@@ -1,12 +1,12 @@
-const ContactForm = () => {
+const EditProfileForm = () => {
 	return (
 		<div className="contact__form">
 			<form action="#">
 				<div className="row ">
-					<div className="col-md-6">
+					<div className="col-lg-6 ">
 						<input type="text" placeholder="First Name" required />
 					</div>
-					<div className="col-md-6">
+					<div className="col-lg-6">
 						<input type="text" placeholder="Last Name" required />
 					</div>
 					<div className="col-lg-12">
@@ -18,7 +18,7 @@ const ContactForm = () => {
 					<div className="col-lg-12">
 						<textarea placeholder="Message" defaultValue={""} />
 						<button type="submit" className="site-btn">
-							Send Message
+							Save Changes
 						</button>
 					</div>
 				</div>
@@ -27,4 +27,4 @@ const ContactForm = () => {
 	);
 };
 
-export default ContactForm;
+export default EditProfileForm;

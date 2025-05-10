@@ -11,10 +11,10 @@ import useCartStore from "../store/useCartStore";
 import PageSize from "../components/pageSize";
 
 const ProductScreen = () => {
-	const { products, loading, error, fetchProducts, count } = useProductStore();
+	const { products, productsLoading, fetchProducts, count } = useProductStore();
 	const { fetchCollections, collections } = useCollectionStore();
 	const [selectedCollection, setSelectedCollection] = useState(null);
-	const [selectedOrder, setSelectedOrder] = useState(null);
+	const [selectedOrder, setSelectedOrder] = useState("name");
 	const [page, setPage] = useState(1);
 	const [pageSize, setPageSize] = useState(10);
 
@@ -26,8 +26,8 @@ const ProductScreen = () => {
 
 	useEffect(() => {
 		fetchProducts({
-			selectedCollection,
-			selectedOrder,
+			collectionId: selectedCollection,
+			ordering: selectedOrder,
 			page,
 			search,
 			pageSize,
@@ -51,7 +51,7 @@ const ProductScreen = () => {
 		<div>
 			<BreadCrumb title="Products" />
 
-			{loading ? (
+			{productsLoading ? (
 				<div id="preloder">
 					<div className="loader"></div>
 				</div>
@@ -64,7 +64,7 @@ const ProductScreen = () => {
 							<div className="shop__sidebar">
 								<ProductSearch onSearch={handleOnSearch} />
 								<div className="shop__sidebar__accordion">
-									<div className="accordion" id="accordionExample">
+									<div className="accordion ">
 										<ProductFilter
 											title="Collections"
 											items={collections}
@@ -78,19 +78,21 @@ const ProductScreen = () => {
 						<div className="col-lg-9">
 							<div className="shop__product__option">
 								<div className="row d-flex justify-content-between align-items-center">
-									<div className="col-6">
+									<div className="col-lg-6">
 										<div className="shop__product__option__left">
-											<h5 className="">
+											<h5 className="d-flex">
 												Showing All {products.length} results
 											</h5>
 										</div>
 									</div>
-									<div className="d-flex justify-content-between align-items-center">
-										<PageSize
-											pageSize={pageSize}
-											handlePageSize={handlePageSize}
-										/>
+									<div className="d-flex justify-content-between align-items-center col-lg-6 mx-2 my-3">
 										<ProductSorter onChange={handleSortChange} />
+										<div className="">
+											<PageSize
+												pageSize={pageSize}
+												handlePageSize={handlePageSize}
+											/>
+										</div>
 									</div>
 								</div>
 							</div>

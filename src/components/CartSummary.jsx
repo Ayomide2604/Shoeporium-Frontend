@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import formatter from "../utils/currencyFormatter";
+import useOrderStore from "./../store/useOrderStore";
 const CartSummary = ({ total }) => {
+	const navigate = useNavigate();
+	const { createOrder } = useOrderStore();
+
 	return (
 		<div className="cart__total">
 			<h6>Cart total</h6>
@@ -12,9 +16,15 @@ const CartSummary = ({ total }) => {
 					Total <span>{formatter.format(total)}</span>
 				</li>
 			</ul>
-			<Link to="/checkout" className="primary-btn">
+			<li
+				style={{ cursor: "pointer" }}
+				className="primary-btn"
+				onClick={() => {
+					createOrder(navigate);
+				}}
+			>
 				Proceed to checkout
-			</Link>
+			</li>
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 
@@ -6,10 +6,11 @@ const LoginScreen = () => {
 	const { login, error, loading } = useAuthStore();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		login(email, password);
+		login(email, password, navigate);
 	};
 
 	return (

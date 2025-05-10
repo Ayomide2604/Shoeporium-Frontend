@@ -46,7 +46,10 @@ const Product = ({ id, image, name, price, rating }) => {
 
 			<div className="product__item__text">
 				<h6>{name}</h6>
-				<a href="#" className="add-cart" onClick={() => addToCart(id)}>
+				<a
+					onClick={() => addToCart(id)}
+					style={{ cursor: "pointer", color: "#e53637" }}
+				>
 					<MdOutlineShoppingCart />
 					Add To Cart
 				</a>

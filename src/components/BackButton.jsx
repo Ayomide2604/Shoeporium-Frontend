@@ -8,8 +8,8 @@ const BackButton = () => {
 			className="btn btn-outline-dark mb-3  d-flex justify-content-center align-items-center "
 			onClick={() => navigate(-1)}
 		>
-			<span className="mr-2">Back</span>
-			<MdOutlineKeyboardReturn />
+			Back
+			{/* <MdOutlineKeyboardReturn /> */}
 		</div>
 	);
 };

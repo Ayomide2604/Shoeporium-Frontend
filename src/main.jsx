@@ -5,11 +5,14 @@ import "./index.css";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import "./assets/css/style.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<BrowserRouter>
 			<App />
+			<ToastContainer />
 		</BrowserRouter>
 	</StrictMode>
 );

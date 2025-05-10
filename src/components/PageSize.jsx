@@ -1,6 +1,6 @@
 const PageSize = ({ pageSize, handlePageSize }) => {
 	return (
-		<div className="accordion shop__product__option__right">
+		<div className="accordion shop__product__option__right ml-3">
 			<p className="mr-2">Page Size:</p>
 			<select
 				className="form-select w-auto"

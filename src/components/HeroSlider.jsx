@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { FaFacebook, FaTwitter, FaInstagram, FaTiktok } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const HeroSlider = ({ slides }) => {
 	return (
 		<div className="hero-slider">
@@ -52,9 +53,9 @@ const HeroSlider = ({ slides }) => {
 											<h2>{slide.subTitle}</h2>
 
 											<p>{slide.description}</p>
-											<a href="#" className="primary-btn">
+											<Link to="/products" className="primary-btn">
 												Shop now <span className="arrow_right"></span>
-											</a>
+											</Link>
 
 											<div className="hero__social">
 												<a href="#">
@@ -65,9 +66,6 @@ const HeroSlider = ({ slides }) => {
 												</a>
 												<a href="#">
 													<FaInstagram />
-												</a>
-												<a href="#">
-													<FaTiktok />
 												</a>
 											</div>
 										</div>

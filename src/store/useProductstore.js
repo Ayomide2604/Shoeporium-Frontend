@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import api from "../utils/api";
+import { toast } from "react-toastify";
 
 const useProductStore = create((set) => ({
 	products: [],
 	count: 0,
 	product: null,
-	loading: false,
-	error: null,
+	productsLoading: false,
 	next: null,
 	previous: null,
 
@@ -17,7 +17,7 @@ const useProductStore = create((set) => ({
 		search = "",
 		pageSize = 10,
 	}) => {
-		set((state) => ({ ...state, loading: false, error: null }));
+		set((state) => ({ ...state, productsLoading: true }));
 		try {
 			const params = new URLSearchParams();
 			if (collectionId) params.append("collection", collectionId);
@@ -33,11 +33,14 @@ const useProductStore = create((set) => ({
 				count: response.data.count,
 				next: response.data.next,
 				previous: response.data.previous,
-				loading: false,
+				productsLoading: false,
 			}));
 		} catch (error) {
-			set((state) => ({ ...state, error, loading: false }));
-			console.error("Error fetching products:", error.message);
+			set((state) => ({
+				...state,
+				productsLoading: false,
+			}));
+			toast.error("Error fetching products:", error.message);
 		}
 	},
 
@@ -61,7 +64,7 @@ const useProductStore = create((set) => ({
 					product: response.data,
 				}));
 			} catch (error) {
-				console.error("Error fetching product by ID:", error.message);
+				toast.error("Error fetching product by ID:", error.message);
 			}
 		}
 	},

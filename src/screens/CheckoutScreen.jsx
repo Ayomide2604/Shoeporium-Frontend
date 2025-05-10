@@ -6,14 +6,17 @@ import Coupon from "../components/Coupon";
 import useCartStore from "../store/useCartStore";
 import CheckoutForm from "../components/CheckoutForm";
 import CheckoutSummary from "./CheckoutSummary";
+import useOrderStore from "../store/useOrderStore";
+import { useParams } from "react-router-dom";
 
 const CheckoutScreen = () => {
-	const { items, fetchUserCart, totalPrice } = useCartStore();
+	const { order, fetchOrderById } = useOrderStore();
+	const { id } = useParams();
 	const [hasCoupon, setHasCoupon] = useState(false);
 
 	useEffect(() => {
-		fetchUserCart();
-	}, []);
+		fetchOrderById(id);
+	}, [id]);
 	return (
 		<div>
 			<BreadCrumb title="Checkout" />
@@ -51,7 +54,10 @@ const CheckoutScreen = () => {
 					</div>
 					<div className="row">
 						<CheckoutForm />
-						<CheckoutSummary items={items} totalPrice={totalPrice} />
+						<CheckoutSummary
+							items={order?.items}
+							totalPrice={order?.total_price}
+						/>
 					</div>
 				</div>
 			</section>

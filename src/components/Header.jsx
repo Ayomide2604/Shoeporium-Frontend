@@ -5,12 +5,13 @@ import {
 	MdOutlineClose,
 	MdOutlineSearch,
 	MdOutlineShoppingCart,
+	MdDeliveryDining,
 } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/site-logo.png";
 import OffCanvas from "./OffCanvas";
 import useAuthStore from "../store/useAuthStore";
 import useCartStore from "./../store/useCartStore";
@@ -20,18 +21,20 @@ const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const currentPath = useLocation().pathname;
 	const { totalItems } = useCartStore();
+	const navigate = useNavigate();
 
 	return (
 		<header className="header sticky-top">
 			<div className="header__top">
 				<div className="container">
-					<div className="row">
-						<div className="col-lg-6 col-md-7">
-							<div className="header__top__left m-0">
-								<p>Free shipping, 30-day return or refund guarantee.</p>
+					<div className="row d-flex align-items-center">
+						<div className="col-lg-6 col-md-6">
+							<div className="header__top__left d-flex align-items-center">
+								<MdDeliveryDining color="white" className="mr-2" />
+								<p>Free Delivery Within Lagos</p>
 							</div>
 						</div>
-						<div className="col-lg-6 col-md-5">
+						<div className="col-lg-6 col-md-6">
 							<div className="header__top__right">
 								<div className="header__top__links">
 									{user ? (
@@ -43,10 +46,14 @@ const Header = () => {
 												</span>
 												<ul>
 													<li className="d-flex justify-content-center align-items-center my-2">
-														<Link className="text-dark">Profile</Link>
+														<Link to="/account" className="text-dark">
+															Profile
+														</Link>
 													</li>
 													<li className="d-flex justify-content-center align-items-center my-2">
-														<Link className="text-dark">Orders</Link>
+														<Link to="account/orders" className="text-dark">
+															Orders
+														</Link>
 													</li>
 													<li className="d-flex justify-content-center align-items-center my-2">
 														<Link className="text-dark">Settings</Link>
@@ -54,7 +61,13 @@ const Header = () => {
 												</ul>
 											</div>
 											<div className="header__top__hover ">
-												<span onClick={logout}>Logout</span>
+												<span
+													onClick={() => {
+														logout(navigate);
+													}}
+												>
+													Logout
+												</span>
 											</div>
 										</>
 									) : (
@@ -72,9 +85,16 @@ const Header = () => {
 			<div className="container">
 				<div className="row d-flex align-items-center">
 					<div className="col-lg-3 col-md-3">
-						<div className="header__logo">
+						<div className="header__logo ">
 							<Link to="/">
-								<img src={logo} />
+								<img
+									src={logo}
+									style={{
+										height: "40px",
+										width: "80px",
+										objectFit: "cover",
+									}}
+								/>
 							</Link>
 						</div>
 					</div>

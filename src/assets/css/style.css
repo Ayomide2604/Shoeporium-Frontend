@@ -3337,7 +3337,7 @@ ol {
 
 .contact__form input {
 	height: 50px;
-	width: 50%;
+	width: 100%;
 	border: 1px solid #e1e1e1;
 	padding-left: 20px;
 	font-size: 15px;

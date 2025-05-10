@@ -20,13 +20,6 @@ const CheckoutSummary = ({ items, totalPrice }) => {
 						Total <span>{formatter.format(totalPrice)}</span>
 					</li>
 				</ul>
-				<div className="checkout__input__checkbox">
-					<label htmlFor="acc-or">
-						Create an account?
-						<input type="checkbox" id="acc-or" />
-						<span className="checkmark" />
-					</label>
-				</div>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua.
@@ -46,7 +39,7 @@ const CheckoutSummary = ({ items, totalPrice }) => {
 					</label>
 				</div>
 				<button type="submit" className="site-btn">
-					PLACE ORDER
+					Make Payment
 				</button>
 			</div>
 		</div>

@@ -1,14 +1,17 @@
 import { create } from "zustand";
 import api from "../utils/api";
+import { toast } from "react-toastify";
 
 const useCartStore = create((set, get) => ({
 	cart: JSON.parse(localStorage.getItem("cart")) || null,
+	cartLoading: false,
 	items: null,
 	totalItems: 0,
 	totalPrice: 0,
 
 	fetchUserCart: async () => {
 		try {
+			set((state) => ({ ...state, cartLoading: true }));
 			const response = await api.get("/carts/me");
 			localStorage.setItem("cart", JSON.stringify(response.data));
 			set((state) => ({
@@ -17,9 +20,10 @@ const useCartStore = create((set, get) => ({
 				items: response.data.items,
 				totalItems: response.data.total_items,
 				totalPrice: response.data.total_price,
+				cartLoading: false,
 			}));
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	},
 
@@ -29,10 +33,10 @@ const useCartStore = create((set, get) => ({
 				product_id: productId,
 				quantity,
 			});
-			alert("product added successfully");
+			toast.success("Product Added Successfully");
 			await get().fetchUserCart();
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	},
 
@@ -40,9 +44,9 @@ const useCartStore = create((set, get) => ({
 		try {
 			const response = await api.delete(`/cart-items/${id}/`);
 			await get().fetchUserCart();
-			// alert("product removed from cart");
+			toast.info("product removed from cart");
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	},
 }));

@@ -6,7 +6,7 @@ import useProductStore from "./../store/useProductstore";
 import ProductTabs from "../components/ProductTabs";
 
 const HomeScreen = () => {
-	const { products, loading, error, fetchProducts } = useProductStore();
+	const { products, productsLoading, fetchProducts } = useProductStore();
 	const { fetchCollections, collections } = useCollectionStore();
 	const [selectedCollection, setSelectedCollection] = useState(null);
 
@@ -19,9 +19,9 @@ const HomeScreen = () => {
 	}, [selectedCollection]);
 	return (
 		<>
-			{loading ? (
-				<div id="preloader">
-					<div class="loader"></div>
+			{productsLoading ? (
+				<div id="preloder">
+					<div className="loader"></div>
 				</div>
 			) : null}
 			<Hero />

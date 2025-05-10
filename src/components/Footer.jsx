@@ -11,7 +11,15 @@ const Footer = () => {
 						<div className="footer__about">
 							<div className="footer__logo">
 								<a href="#">
-									<img src={footerLogo} alt="" />
+									<img
+										src={footerLogo}
+										style={{
+											height: "40px",
+											width: "80px",
+											objectFit: "cover",
+										}}
+										alt=""
+									/>
 								</a>
 							</div>
 							<p>

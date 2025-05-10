@@ -1,6 +1,6 @@
 const ProductSorter = ({ onChange }) => {
 	return (
-		<div className=" shop__product__option__right mx-3">
+		<div className=" shop__product__option__right ">
 			<p className="mr-2">Sort by:</p>
 			<select onChange={onChange} className="">
 				<option value="-date_created">Newest</option>

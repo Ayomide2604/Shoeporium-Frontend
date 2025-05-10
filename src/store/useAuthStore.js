@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import api from "../utils/api";
+import { toast } from "react-toastify";
 
-const useAuthStore = create((set) => ({
+const useAuthStore = create((set, get) => ({
 	user: JSON.parse(localStorage.getItem("user")) || null,
 	accessToken: localStorage.getItem("accessToken") || null,
 	refreshToken: localStorage.getItem("refreshToken") || null,
@@ -10,7 +11,7 @@ const useAuthStore = create((set) => ({
 	uploadSuccess: false,
 	uploadError: null,
 
-	login: async (email, password) => {
+	login: async (email, password, navigate) => {
 		try {
 			const res = await api.post("auth/jwt/create/", { email, password });
 			localStorage.setItem("accessToken", res.data.access);
@@ -24,23 +25,24 @@ const useAuthStore = create((set) => ({
 			const userRes = await api.get("auth/users/me/");
 			localStorage.setItem("user", JSON.stringify(userRes.data));
 			set((state) => ({ ...state, user: userRes.data }));
-			window.location.href = "/";
+			toast.success("Login Successful");
+			navigate("/");
 		} catch (err) {
 			set((state) => ({ ...state, error: "Invalid login credentials" }));
 		}
 	},
 
-	register: async (formData) => {
+	register: async (formData, navigate) => {
 		try {
 			const response = await api.post("/auth/users/", formData);
-			alert("User Registered Successfully");
-			window.location.href = "/login";
+			toast.success("User Registered Successfully");
+			navigate("/login");
 		} catch (error) {
 			console.error(error.message);
 		}
 	},
 
-	logout: () => {
+	logout: (navigate) => {
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		localStorage.removeItem("user");
@@ -51,13 +53,15 @@ const useAuthStore = create((set) => ({
 			accessToken: null,
 			refreshToken: null,
 		}));
-		window.location.href = "/";
+		navigate("/");
+		toast.error("logged out successfully ");
 	},
 
 	fetchCurrentUser: async () => {
 		try {
-			const response = await api.get("users/me/");
+			const response = await api.get("auth/users/me/");
 			set((state) => ({ ...state, user: response.data }));
+			localStorage.setItem("user", JSON.stringify(response.data));
 		} catch (err) {
 			console.log("Not authenticated");
 		}
@@ -81,7 +85,7 @@ const useAuthStore = create((set) => ({
 
 			if (response.status === 200) {
 				set({ uploadSuccess: true });
-				window.location.reload();
+				get().fetchCurrentUser();
 			}
 		} catch (error) {
 			set({ uploadError: error.message });
