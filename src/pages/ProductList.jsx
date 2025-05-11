@@ -1,11 +1,7 @@
 import Product from "../components/Product";
-import ProductTabs from "../components/ProductTabs";
+import defaultProduct from "../assets/img/default_product.jpg";
 
 const ProductList = ({ products }) => {
-	const handleActiveTab = (category) => {
-		if (!activeTab) setActiveTab(category);
-	};
-
 	return (
 		<section className="product spad mt-5">
 			<div className="container">
