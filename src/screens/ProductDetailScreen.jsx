@@ -8,6 +8,7 @@ import RelatedProducts from "../pages/RelatedProducts";
 import useProductStore from "../store/useProductstore";
 import useCartStore from "../store/useCartStore";
 import formatter from "../utils/currencyFormatter";
+import defaultProduct from "../assets/img/default_product.jpg";
 
 const ProductDetailScreen = () => {
 	const { id } = useParams();
@@ -45,7 +46,11 @@ const ProductDetailScreen = () => {
 									<div>
 										<div className="product__details__pic__item">
 											<img
-												src={product?.images?.[0]?.image_url}
+												src={
+													product?.images?.length > 0
+														? product.images[0].image_url
+														: defaultProduct
+												}
 												alt={product?.name}
 												height="auto"
 												className="mb-3"

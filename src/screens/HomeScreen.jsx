@@ -4,6 +4,7 @@ import ProductList from "../pages/ProductList";
 import useCollectionStore from "../store/useCollectionStore";
 import useProductStore from "./../store/useProductstore";
 import ProductTabs from "../components/ProductTabs";
+import defaultProduct from "../assets/img/default_product.jpg";
 
 const HomeScreen = () => {
 	const { products, productsLoading, fetchProducts } = useProductStore();
