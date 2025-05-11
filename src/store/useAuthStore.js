@@ -67,6 +67,26 @@ const useAuthStore = create((set, get) => ({
 		}
 	},
 
+	createProfileImage: async (file) => {
+		set({ loading: true, uploadError: null, uploadSuccess: false });
+		try {
+			const formData = new FormData();
+			formData.append("image", file);
+
+			const response = await api.post(`/profile/profile-images/`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			});
+
+			if (response.status === 200) {
+				set({ uploadSuccess: true });
+				get().fetchCurrentUser();
+			}
+		} catch (error) {
+			set({ uploadError: error.message, loading: false });
+		}
+	},
 	editProfileImage: async (id, file) => {
 		set({ loading: true, uploadError: null, uploadSuccess: false });
 		try {
@@ -83,14 +103,10 @@ const useAuthStore = create((set, get) => ({
 				}
 			);
 
-			if (response.status === 200) {
-				set({ uploadSuccess: true });
-				get().fetchCurrentUser();
-			}
+			if (response.status === 200) set({ uploadSuccess: true });
+			get().fetchCurrentUser();
 		} catch (error) {
-			set({ uploadError: error.message });
-		} finally {
-			set({ loading: false });
+			set({ uploadError: error.message, loading: false });
 		}
 	},
 }));

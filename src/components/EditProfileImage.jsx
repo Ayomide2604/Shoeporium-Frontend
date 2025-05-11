@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 
-const EditProfileImage = ({ isOpen, onClose, user }) => {
+const EditProfileImage = ({ imageId, isOpen, onClose, user }) => {
 	const [selectedFile, setSelectedFile] = useState(null);
-	const { editProfileImage, loading, uploadSuccess, uploadError } =
-		useAuthStore();
+	const {
+		editProfileImage,
+		createProfileImage,
+		loading,
+		uploadSuccess,
+		uploadError,
+	} = useAuthStore();
 
 	const handleFileChange = (event) => {
 		setSelectedFile(event.target.files[0]);
 	};
 
-	const handleUpload = () => {
-		if (selectedFile) {
+	const handleUpload = (id, selectedFile) => {
+		if (id && selectedFile)
 			editProfileImage(user?.profile_image?.id, selectedFile);
-		}
+		createProfileImage(selectedFile);
 	};
 
 	if (!isOpen) return null;
@@ -59,7 +64,9 @@ const EditProfileImage = ({ isOpen, onClose, user }) => {
 						<button
 							type="button"
 							className="btn btn-primary"
-							onClick={handleUpload}
+							onClick={() => {
+								handleUpload(imageId, selectedFile);
+							}}
 						>
 							Upload
 						</button>

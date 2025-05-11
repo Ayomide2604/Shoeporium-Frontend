@@ -36,7 +36,11 @@ const useCartStore = create((set, get) => ({
 			toast.success("Product Added Successfully");
 			await get().fetchUserCart();
 		} catch (error) {
-			toast.error(error.message);
+			if (error.response.status === 401) {
+				toast.error("You need to login to add to cart");
+			} else {
+				toast.error("unable to add to cart at this time");
+			}
 		}
 	},
 

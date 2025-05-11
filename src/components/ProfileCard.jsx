@@ -1,7 +1,7 @@
 import { MdFileUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 import profilePic from "../assets/img/default_profile.png";
-const ProfileCard = ({ user, editProfileImage, onEditModalOpen }) => {
+const ProfileCard = ({ user, onEditModalOpen }) => {
 	const handleImageClick = () => {
 		onEditModalOpen(true);
 	};
@@ -11,7 +11,6 @@ const ProfileCard = ({ user, editProfileImage, onEditModalOpen }) => {
 			<div className="image d-flex flex-column justify-content-center align-items-center">
 				<div className="profile-image-container">
 					<img
-						onClick={() => editProfileImage(user?.profile_image?.id)}
 						src={user?.profile_image?.image_url || profilePic}
 						height={100}
 						width={100}
