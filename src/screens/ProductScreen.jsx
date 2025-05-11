@@ -8,6 +8,7 @@ import useProductStore from "../store/useProductstore";
 import useCollectionStore from "../store/useCollectionStore";
 import ProductSorter from "../components/ProductSorter";
 import PageSize from "../components/PageSize";
+import defaultProduct from "../assets/img/default_product.jpg";
 
 const ProductScreen = () => {
 	const { products, productsLoading, fetchProducts, count } = useProductStore();
@@ -100,9 +101,13 @@ const ProductScreen = () => {
 									<div key={product.id} className="col-lg-4 col-md-6 col-sm-6">
 										<Product
 											id={product.id}
-											name={product.name}
-											price={product.price}
-											image={product.images[0].image_url}
+											name={product?.name}
+											price={product?.price}
+											image={
+												product?.images?.length > 0
+													? product.images[0].image_url
+													: defaultProduct
+											}
 											rating={4}
 										/>
 									</div>

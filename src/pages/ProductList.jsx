@@ -19,7 +19,11 @@ const ProductList = ({ products }) => {
 								id={product.id}
 								name={product.name}
 								price={product.price}
-								image={product.images[0].image_url}
+								image={
+									product?.images?.length > 0
+										? product.images[0].image_url
+										: defaultProduct
+								}
 								rating={4}
 							/>
 						</div>

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import defaultProduct from "../assets/img/default_product.jpg";
 import Rating from "./Rating";
 import { FaRegHeart, FaRegEye } from "react-icons/fa";
 import useCartStore from "../store/useCartStore";
@@ -13,7 +12,7 @@ const Product = ({ id, image, name, price, rating }) => {
 			<div
 				className="product__item__pic set-bg"
 				style={{
-					backgroundImage: `url(${image}) ` || defaultProduct,
+					backgroundImage: `url(${image})`,
 					backgroundSize: "contain",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
