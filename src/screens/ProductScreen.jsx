@@ -8,6 +8,7 @@ import useProductStore from "../store/useProductstore";
 import useCollectionStore from "../store/useCollectionStore";
 import ProductSorter from "../components/ProductSorter";
 import PageSize from "../components/PageSize";
+import defaultProduct from "../assets/img/default_product.jpg";
 
 const ProductScreen = () => {
 	const { products, productsLoading, fetchProducts, count } = useProductStore();
